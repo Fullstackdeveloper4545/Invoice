@@ -1,0 +1,156 @@
+/* ===== BASE ===== */
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  display: flex;
+  gap: 30px;
+  padding: 30px;
+}
+
+/* ===== FORM + INVOICE CONTAINERS ===== */
+.form {
+  background: white;
+  padding: 30px;
+  width: 430px;
+}
+
+.invoice {
+  background: white;
+  width: 8.5in;              /* LOCK PAGE WIDTH */
+  min-height: 11in;          /* LOCK PAGE HEIGHT */
+  padding: 0.75in;           /* STANDARD PRINT MARGINS */
+  box-sizing: border-box;
+}
+
+/* ===== INPUTS ===== */
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* ===== HEADER (LOGO FIXED) ===== */
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+.invoice-header h1 {
+  letter-spacing: 6px;
+  color: #444;
+  margin: 0;
+}
+
+.logo {
+  max-width: 300px;      /* increased from 140px */
+  max-height: 200px;     /* increased from 70px */
+  object-fit: contain;
+  display: block;
+}
+
+
+/* ===== INFO ===== */
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.label {
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+/* ===== TABLE (SAFE FOR LONG TEXT) ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* CRITICAL FOR PAGE SAFETY */
+}
+
+th {
+  border-bottom: 1px solid #999;
+  text-align: left;
+  padding-bottom: 6px;
+}
+
+td {
+  padding-top: 8px;
+  vertical-align: top;
+}
+
+.right {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.wrap {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  line-height: 1.5;
+}
+
+/* ===== TOTAL ===== */
+.total {
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: right;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sign {
+  font-style: italic;
+}
+
+/* ===== PRINT SETTINGS (MOST IMPORTANT) ===== */
+@page {
+  size: 8.5in 11in;   /* FORCE PDF SIZE */
+  margin: 0;
+}
+
+@media print {
+  body {
+    background: none;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .invoice,
+  .invoice * {
+    visibility: visible;
+  }
+
+  .invoice {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .wrapper {
+    padding: 0;
+  }
+}

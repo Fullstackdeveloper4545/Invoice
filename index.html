@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Invoice</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- USER FORM -->
+  <div class="form">
+    <h3>Invoice Details</h3>
+
+    <input id="company" placeholder="Company Name">
+    <input id="address" placeholder="Address">
+    <input id="email" placeholder="Email">
+    <input id="invoiceNo" placeholder="Invoice No">
+    <input id="date" placeholder="Date">
+
+    <label><strong>Upload Logo</strong></label>
+    <input type="file" accept="image/*" onchange="loadLogo(event)">
+
+    <h4>Invoice Items</h4>
+    <div id="itemsForm"></div>
+
+    <button type="button" onclick="addItem()">➕ Add Description</button>
+
+    <h4>Bank Details</h4>
+    <input id="bankName" placeholder="Bank Name">
+    <input id="accountName" placeholder="Account Name">
+    <input id="accountNo" placeholder="Account No.">
+
+    <br><br>
+    <button type="button" onclick="updateInvoice()">Update Invoice</button>
+    <button type="button" onclick="printInvoice()">Download PDF</button>
+  </div>
+
+  <!-- INVOICE PREVIEW -->
+  <div class="invoice" id="invoice">
+
+    <!-- FIXED HEADER -->
+    <div class="invoice-header">
+      <h1>INVOICE</h1>
+      <img id="logoPreview" class="logo" alt="Logo">
+    </div>
+
+    <!-- CLIENT + META INFO -->
+    <div class="info">
+      <div>
+        <p class="label">ISSUED TO:</p>
+        <p id="invCompany"></p>
+        <p id="invAddress"></p>
+        <p id="invEmail"></p>
+      </div>
+
+      <div>
+        <p><strong>Invoice No:</strong> <span id="invNo"></span></p>
+        <p><strong>Date:</strong> <span id="invDate"></span></p>
+      </div>
+    </div>
+
+    <!-- ITEMS TABLE (BORDERED + TOTAL INSIDE TABLE) -->
+    <table>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th class="right">Total</th>
+        </tr>
+      </thead>
+
+      <tbody id="invoiceBody">
+        <!-- Dynamic rows inserted by JS -->
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <th class="right">TOTAL</th>
+          <th class="right">$<span id="grandTotal">0.00</span></th>
+        </tr>
+      </tfoot>
+    </table>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div>
+        <p class="label">PAYMENT INFO:</p>
+        <p id="invBank"></p>
+        <p>Account Name: <span id="invAccName"></span></p>
+        <p>Account No.: <span id="invAccNo"></span></p>
+      </div>
+
+      <div class="sign">Authorized Signature</div>
+    </div>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
